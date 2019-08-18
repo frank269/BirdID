@@ -22,7 +22,9 @@ class ModelHandler {
     var labels: [String] = []
     
     
-    var birds_model = birds()
+//    var model = birds()
+    var model = woods()
+
     
     func runModel(onFrame pixelBuffer: CVPixelBuffer) -> Inference? {
         
@@ -42,7 +44,7 @@ class ModelHandler {
         CVPixelBufferLockBaseAddress(thumbnailPixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
         
         do{
-            let predict = try birds_model.prediction(input__0: thumbnailPixelBuffer)
+            let predict = try model.prediction(input__0: thumbnailPixelBuffer)
 //            list = predict.final_result__0.sorted(by:  {(s1,s2)->Bool in
 //                if (s1.value > s2.value)
 //                {

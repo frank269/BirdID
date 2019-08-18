@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		C02CD0D822F057A0002F2949 /* ModelDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02CD0D722F057A0002F2949 /* ModelDataHandler.swift */; };
 		C02CD0DA22F07894002F2949 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02CD0D922F07894002F2949 /* DetailViewController.swift */; };
+		C03889DE2309C18800E4F53E /* woods.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C03889DC2309C18800E4F53E /* woods.mlmodel */; };
+		C03889DF2309C18800E4F53E /* birds.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C03889DD2309C18800E4F53E /* birds.mlmodel */; };
 		C06EECAB22E9EF9100843FAB /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06EECAA22E9EF9100843FAB /* ToggleButton.swift */; };
-		C0F4B12722E0EAD300628736 /* birds.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C0F4B12522E0EAD300628736 /* birds.mlmodel */; };
 		CD6F6E3422D43D1F0068013E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6E3322D43D1F0068013E /* AppDelegate.swift */; };
 		CD6F6E3622D43D1F0068013E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6E3522D43D1F0068013E /* ViewController.swift */; };
 		CD6F6E3922D43D1F0068013E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD6F6E3722D43D1F0068013E /* Main.storyboard */; };
@@ -44,8 +45,9 @@
 /* Begin PBXFileReference section */
 		C02CD0D722F057A0002F2949 /* ModelDataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelDataHandler.swift; sourceTree = "<group>"; };
 		C02CD0D922F07894002F2949 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		C03889DC2309C18800E4F53E /* woods.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = woods.mlmodel; sourceTree = "<group>"; };
+		C03889DD2309C18800E4F53E /* birds.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = birds.mlmodel; sourceTree = "<group>"; };
 		C06EECAA22E9EF9100843FAB /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
-		C0F4B12522E0EAD300628736 /* birds.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = birds.mlmodel; sourceTree = "<group>"; };
 		CD6F6E3022D43D1F0068013E /* BirdID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirdID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD6F6E3322D43D1F0068013E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD6F6E3522D43D1F0068013E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -165,7 +167,8 @@
 		CD6F6E6522D43ED10068013E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				C0F4B12522E0EAD300628736 /* birds.mlmodel */,
+				C03889DD2309C18800E4F53E /* birds.mlmodel */,
+				C03889DC2309C18800E4F53E /* woods.mlmodel */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -344,8 +347,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C03889DF2309C18800E4F53E /* birds.mlmodel in Sources */,
 				CD6F6E6F22D443B60068013E /* PreviewView.swift in Sources */,
-				C0F4B12722E0EAD300628736 /* birds.mlmodel in Sources */,
+				C03889DE2309C18800E4F53E /* woods.mlmodel in Sources */,
 				CD6F6E7322D4DA700068013E /* CVPixelBufferExtension.swift in Sources */,
 				CD6F6E3622D43D1F0068013E /* ViewController.swift in Sources */,
 				C06EECAB22E9EF9100843FAB /* ToggleButton.swift in Sources */,
