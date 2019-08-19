@@ -38,8 +38,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func ShowInfo(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Infomation!", message: "The information content show here!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        let alert = UIAlertController(title: "Hướng dẫn sử dụng!", message: "Đưa điện thoại đến mẫu gỗ cần nhận dạng, giữ điện thoại trong 3s, enjoy!", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Đã hiểu", style: .default, handler: nil))
         
         self.present(alert, animated: true)
     }
@@ -74,10 +74,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         imagePicker.dismiss(animated: true, completion: nil)
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
-        guard let result = modelDataHandler.runModel(onFrame: image.pixelBuffer()!) else {
+        let pixelbuffer = pixelBuffer(from: image)
+        guard let result = modelDataHandler.runModel(onFrame: pixelbuffer) else {
             return
         }
-        if(result.confidence > THRESHOLD){
+        if(result.confidence > THRESHOLD && result.className != "Other"){
             gotoDetailScreen(image: image, name: "Kết quả: " + result.className + " - " + String(format: "%.2f", result.confidence * 100.0) + "%")
         }else{
             gotoDetailScreen(image: image, name: "Không tìm thấy gỗ")
@@ -145,7 +146,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         func checkResult(result : Inference) -> Bool {
-            if(result.confidence > THRESHOLD && result.className == lastCheckLable) {
+            if(result.confidence > THRESHOLD && result.className != "Other" && result.className == lastCheckLable) {
                 lastCheckCount += 1
             }
             else
@@ -215,83 +216,53 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
-extension UIImage {
     
-    func resize(to newSize: CGSize) -> UIImage {
-        UIGraphicsBeginImageContextWithOptions(CGSize(width: newSize.width, height: newSize.height), true, 1.0)
-        self.draw(in: CGRect(x: 0, y: 0, width: newSize.width, height: newSize.height))
-        let resizedImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return resizedImage
-    }
-    
-    func cropToSquare() -> UIImage? {
-        guard let cgImage = self.cgImage else {
-            return nil
-        }
-        var imageHeight = self.size.height
-        var imageWidth = self.size.width
-        
-        if imageHeight > imageWidth {
-            imageHeight = imageWidth
-        }
-        else {
-            imageWidth = imageHeight
-        }
-        
-        let size = CGSize(width: imageWidth, height: imageHeight)
-        
-        let x = ((CGFloat(cgImage.width) - size.width) / 2).rounded()
-        let y = ((CGFloat(cgImage.height) - size.height) / 2).rounded()
-        
-        let cropRect = CGRect(x: x, y: y, width: size.height, height: size.width)
-        if let croppedCgImage = cgImage.cropping(to: cropRect) {
-            return UIImage(cgImage: croppedCgImage, scale: 0, orientation: self.imageOrientation)
-        }
-        
-        return nil
-    }
-    
-    func pixelBuffer() -> CVPixelBuffer? {
-        let width = self.size.width
-        let height = self.size.height
-        let attrs = [kCVPixelBufferCGImageCompatibilityKey: kCFBooleanTrue,
-                     kCVPixelBufferCGBitmapContextCompatibilityKey: kCFBooleanTrue] as CFDictionary
-        var pixelBuffer: CVPixelBuffer?
-        let status = CVPixelBufferCreate(kCFAllocatorDefault,
-                                         Int(width),
-                                         Int(height),
-                                         kCVPixelFormatType_32ARGB,
-                                         attrs,
-                                         &pixelBuffer)
-        
-        guard let resultPixelBuffer = pixelBuffer, status == kCVReturnSuccess else {
-            return nil
-        }
-        
-        CVPixelBufferLockBaseAddress(resultPixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
-        let pixelData = CVPixelBufferGetBaseAddress(resultPixelBuffer)
-        
-        let rgbColorSpace = CGColorSpaceCreateDeviceRGB()
-        guard let context = CGContext(data: pixelData,
-                                      width: Int(width),
-                                      height: Int(height),
-                                      bitsPerComponent: 8,
-                                      bytesPerRow: CVPixelBufferGetBytesPerRow(resultPixelBuffer),
-                                      space: rgbColorSpace,
-                                      bitmapInfo: CGImageAlphaInfo.noneSkipFirst.rawValue) else {
-                                        return nil
-        }
-        
-        context.translateBy(x: 0, y: height)
-        context.scaleBy(x: 1.0, y: -1.0)
-        
-        UIGraphicsPushContext(context)
-        self.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
-        UIGraphicsPopContext()
-        CVPixelBufferUnlockBaseAddress(resultPixelBuffer, CVPixelBufferLockFlags(rawValue: 0))
-        
-        return resultPixelBuffer
-    }
+    func pixelBuffer(from image: UIImage) -> CVPixelBuffer {
+            let ciimage = CIImage(image: image)
+            //let cgimage = convertCIImageToCGImage(inputImage: ciimage!)
+            let tmpcontext = CIContext(options: nil)
+            let cgimage =  tmpcontext.createCGImage(ciimage!, from: ciimage!.extent)
+            
+            let cfnumPointer = UnsafeMutablePointer<UnsafeRawPointer>.allocate(capacity: 1)
+            let cfnum = CFNumberCreate(kCFAllocatorDefault, .intType, cfnumPointer)
+            let keys: [CFString] = [kCVPixelBufferCGImageCompatibilityKey, kCVPixelBufferCGBitmapContextCompatibilityKey, kCVPixelBufferBytesPerRowAlignmentKey]
+            let values: [CFTypeRef] = [kCFBooleanTrue, kCFBooleanTrue, cfnum!]
+            let keysPointer = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: 1)
+            let valuesPointer =  UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: 1)
+            keysPointer.initialize(to: keys)
+            valuesPointer.initialize(to: values)
+            
+            let options = CFDictionaryCreate(kCFAllocatorDefault, keysPointer, valuesPointer, keys.count, nil, nil)
+            
+            let width = cgimage!.width
+            let height = cgimage!.height
+            
+            var pxbuffer: CVPixelBuffer?
+            // if pxbuffer = nil, you will get status = -6661
+            var status = CVPixelBufferCreate(kCFAllocatorDefault, width, height,
+                                             kCVPixelFormatType_32BGRA, options, &pxbuffer)
+            status = CVPixelBufferLockBaseAddress(pxbuffer!, CVPixelBufferLockFlags(rawValue: 0));
+            
+            let bufferAddress = CVPixelBufferGetBaseAddress(pxbuffer!);
+            
+            
+            let rgbColorSpace = CGColorSpaceCreateDeviceRGB();
+            let bytesperrow = CVPixelBufferGetBytesPerRow(pxbuffer!)
+            let context = CGContext(data: bufferAddress,
+                                    width: width,
+                                    height: height,
+                                    bitsPerComponent: 8,
+                                    bytesPerRow: bytesperrow,
+                                    space: rgbColorSpace,
+                                    bitmapInfo: CGImageAlphaInfo.premultipliedFirst.rawValue | CGBitmapInfo.byteOrder32Little.rawValue);
+            context?.concatenate(CGAffineTransform(rotationAngle: 0))
+            context?.concatenate(__CGAffineTransformMake( 1, 0, 0, -1, 0, CGFloat(height) )) //Flip Vertical
+            //        context?.concatenate(__CGAffineTransformMake( -1.0, 0.0, 0.0, 1.0, CGFloat(width), 0.0)) //Flip Horizontal
+            
+            
+            context?.draw(cgimage!, in: CGRect(x:0, y:0, width:CGFloat(width), height:CGFloat(height)));
+            status = CVPixelBufferUnlockBaseAddress(pxbuffer!, CVPixelBufferLockFlags(rawValue: 0));
+            return pxbuffer!;
+            
 }
+
