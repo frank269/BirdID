@@ -38,10 +38,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func ShowInfo(_ sender: UIButton) {
-        let alert = UIAlertController(title: "Infomation!", message: "The information content show here!", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        
-        self.present(alert, animated: true)
+        let guideLlineScreen = self.storyboard?.instantiateViewController(withIdentifier: "GuideViewController") as! GuideViewController
+        self.navigationController?.pushViewController(guideLlineScreen, animated: true)
     }
     
     @IBAction func TurnFlashOnOff(_ sender: ToggleButton) {
@@ -77,7 +75,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         guard let result = modelDataHandler.runModel(onFrame: image.pixelBuffer()!) else {
             return
         }
-        if(result.confidence > THRESHOLD){
+        if(result.confidence > THRESHOLD && result.className != "Other"){
             gotoDetailScreen(image: image, name: "Kết quả: " + result.className + " - " + String(format: "%.2f", result.confidence * 100.0) + "%")
         }else{
             gotoDetailScreen(image: image, name: "Không tìm thấy gỗ")
@@ -145,7 +143,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         func checkResult(result : Inference) -> Bool {
-            if(result.confidence > THRESHOLD && result.className == lastCheckLable) {
+            if(result.confidence > THRESHOLD && result.className != "Other" && result.className == lastCheckLable) {
                 lastCheckCount += 1
             }
             else

@@ -12,6 +12,8 @@
 		C03889DE2309C18800E4F53E /* woods.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C03889DC2309C18800E4F53E /* woods.mlmodel */; };
 		C03889DF2309C18800E4F53E /* birds.mlmodel in Sources */ = {isa = PBXBuildFile; fileRef = C03889DD2309C18800E4F53E /* birds.mlmodel */; };
 		C06EECAB22E9EF9100843FAB /* ToggleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C06EECAA22E9EF9100843FAB /* ToggleButton.swift */; };
+		C0D90789230F918E003F09B7 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D90788230F918E003F09B7 /* GuideViewController.swift */; };
+		C0F876E72313777F00CCE577 /* guide.pdf in Resources */ = {isa = PBXBuildFile; fileRef = C0F876E62313777F00CCE577 /* guide.pdf */; };
 		CD6F6E3422D43D1F0068013E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6E3322D43D1F0068013E /* AppDelegate.swift */; };
 		CD6F6E3622D43D1F0068013E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD6F6E3522D43D1F0068013E /* ViewController.swift */; };
 		CD6F6E3922D43D1F0068013E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CD6F6E3722D43D1F0068013E /* Main.storyboard */; };
@@ -48,6 +50,9 @@
 		C03889DC2309C18800E4F53E /* woods.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = woods.mlmodel; sourceTree = "<group>"; };
 		C03889DD2309C18800E4F53E /* birds.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = birds.mlmodel; sourceTree = "<group>"; };
 		C06EECAA22E9EF9100843FAB /* ToggleButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleButton.swift; sourceTree = "<group>"; };
+		C0D90788230F918E003F09B7 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		C0D9078C230F92AF003F09B7 /* woodsv2.mlmodel */ = {isa = PBXFileReference; lastKnownFileType = file.mlmodel; path = woodsv2.mlmodel; sourceTree = "<group>"; };
+		C0F876E62313777F00CCE577 /* guide.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = guide.pdf; sourceTree = "<group>"; };
 		CD6F6E3022D43D1F0068013E /* BirdID.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirdID.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CD6F6E3322D43D1F0068013E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CD6F6E3522D43D1F0068013E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -100,6 +105,14 @@
 			path = ModelHandler;
 			sourceTree = "<group>";
 		};
+		C0F876E52313775200CCE577 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				C0F876E62313777F00CCE577 /* guide.pdf */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		CD6F6E2722D43D1F0068013E = {
 			isa = PBXGroup;
 			children = (
@@ -123,6 +136,7 @@
 		CD6F6E3222D43D1F0068013E /* BirdID */ = {
 			isa = PBXGroup;
 			children = (
+				C0F876E52313775200CCE577 /* Assets */,
 				C02CD0D622F05777002F2949 /* ModelHandler */,
 				CD6F6E6D22D4435B0068013E /* Views */,
 				CD6F6E6922D442830068013E /* Extensions */,
@@ -167,6 +181,7 @@
 		CD6F6E6522D43ED10068013E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				C0D9078C230F92AF003F09B7 /* woodsv2.mlmodel */,
 				C03889DD2309C18800E4F53E /* birds.mlmodel */,
 				C03889DC2309C18800E4F53E /* woods.mlmodel */,
 			);
@@ -187,6 +202,7 @@
 			children = (
 				CD6F6E3522D43D1F0068013E /* ViewController.swift */,
 				C02CD0D922F07894002F2949 /* DetailViewController.swift */,
+				C0D90788230F918E003F09B7 /* GuideViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -323,6 +339,7 @@
 				CD6F6E4122D43D210068013E /* LaunchScreen.storyboard in Resources */,
 				CD6F6E3E22D43D210068013E /* Assets.xcassets in Resources */,
 				CD6F6E3922D43D1F0068013E /* Main.storyboard in Resources */,
+				C0F876E72313777F00CCE577 /* guide.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,6 +369,7 @@
 				C03889DE2309C18800E4F53E /* woods.mlmodel in Sources */,
 				CD6F6E7322D4DA700068013E /* CVPixelBufferExtension.swift in Sources */,
 				CD6F6E3622D43D1F0068013E /* ViewController.swift in Sources */,
+				C0D90789230F918E003F09B7 /* GuideViewController.swift in Sources */,
 				C06EECAB22E9EF9100843FAB /* ToggleButton.swift in Sources */,
 				CD6F6E3422D43D1F0068013E /* AppDelegate.swift in Sources */,
 				CD6F6E7122D44CAB0068013E /* CameraFeedManager.swift in Sources */,
