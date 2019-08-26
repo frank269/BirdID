@@ -1,0 +1,11 @@
+BirdID.xcodeproj/project.xcworkspace/xcuserdata/
+
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+
+*.DS_Store
+
