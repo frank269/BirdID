@@ -23,8 +23,7 @@ class ModelHandler {
     
     
 //    var model = birds()
-    var model = woods()
-
+    var model = woodnew()
     
     func runModel(onFrame pixelBuffer: CVPixelBuffer) -> Inference? {
         

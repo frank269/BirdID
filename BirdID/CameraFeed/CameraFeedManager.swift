@@ -200,8 +200,8 @@ class CameraFeedManager: NSObject {
         self.cameraConfiguration = .success
     }
     
-    func turnFlash(on: Bool) {
-        guard captureDevice?.hasTorch ?? false else { return }
+    func turnFlash(on: Bool) -> Bool {
+        guard captureDevice?.hasTorch ?? false else { return !on}
         let device = captureDevice!
         do {
             try device.lockForConfiguration()
@@ -211,6 +211,7 @@ class CameraFeedManager: NSObject {
                     try device.setTorchModeOn(level: 1.0)
                 } catch {
                     print(error)
+                    return !on
                 }
             }
             else
@@ -221,7 +222,9 @@ class CameraFeedManager: NSObject {
             device.unlockForConfiguration()
         } catch {
             print(error)
+            return !on
         }
+        return on
     }
     
     /**
@@ -232,7 +235,8 @@ class CameraFeedManager: NSObject {
         /**Tries to get the default back camera.
          */
         guard let camera  = AVCaptureDevice.default(.builtInWideAngleCamera, for: .video, position: .back) else {
-            fatalError("Cannot find camera")
+            //fatalError("Cannot find camera")
+            return false
         }
         captureDevice = camera
         do {

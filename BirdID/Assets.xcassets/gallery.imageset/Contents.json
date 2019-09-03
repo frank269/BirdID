@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "gallery-4.png",
+      "filename" : "thuvien.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "gallery.png",
+      "filename" : "thuvien-1.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "gallery-3.png",
+      "filename" : "thuvien-2.png",
       "scale" : "3x"
     }
   ],

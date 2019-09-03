@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xTG-NH-dBV">
-    <device id="retina5_9" orientation="portrait">
+    <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,15 +15,15 @@
             <objects>
                 <viewController title="Trang chủ" id="BYZ-38-t0r" customClass="ViewController" customModule="BirdID" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FQQ-O2-JPt" customClass="PreviewView" customModule="BirdID" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="-20" width="375" height="798"/>
+                                <rect key="frame" x="0.0" y="-20" width="320" height="500"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Ud-bK-DOi">
-                                <rect key="frame" x="0.0" y="658" width="375" height="120"/>
+                                <rect key="frame" x="0.0" y="360" width="320" height="120"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8e6-Qc-vX4">
                                         <rect key="frame" x="28" y="35" width="50" height="50"/>
@@ -37,7 +37,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qy0-hp-fe8">
-                                        <rect key="frame" x="297" y="35" width="50" height="50"/>
+                                        <rect key="frame" x="242" y="35" width="50" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="5qO-FZ-iP7"/>
                                             <constraint firstAttribute="width" constant="50" id="FUp-Lv-sgD"/>
@@ -48,7 +48,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2gx-98-Oog" customClass="ToggleButton" customModule="BirdID">
-                                        <rect key="frame" x="157.66666666666666" y="30" width="60" height="60"/>
+                                        <rect key="frame" x="130" y="30" width="60" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="NwJ-C3-p8u"/>
                                             <constraint firstAttribute="height" constant="60" id="jDh-MQ-AkJ"/>
@@ -98,29 +98,41 @@
             <objects>
                 <viewController storyboardIdentifier="DetailViewController" title="Kết quả nhận dạng" useStoryboardIdentifierAsRestorationIdentifier="YES" id="TZE-r3-Grx" customClass="DetailViewController" customModule="BirdID" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ZW9-RC-4Tz">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fO0-tB-VAb">
-                                <rect key="frame" x="30" y="94" width="315" height="315"/>
+                                <rect key="frame" x="50" y="25" width="220" height="146.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="fO0-tB-VAb" secondAttribute="height" multiplier="1:1" id="f1w-hz-BXo"/>
+                                    <constraint firstAttribute="width" secondItem="fO0-tB-VAb" secondAttribute="height" multiplier="3:2" id="f1w-hz-BXo"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gw6-sa-GPl">
-                                <rect key="frame" x="30" y="419" width="315" height="18"/>
+                                <rect key="frame" x="30" y="176.5" width="260" height="18"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVF-eZ-V4E">
+                                <rect key="frame" x="10" y="199.5" width="300" height="270.5"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="fO0-tB-VAb" firstAttribute="leading" secondItem="Bzh-7Z-yRZ" secondAttribute="leading" constant="30" id="1oa-FR-MJZ"/>
+                            <constraint firstItem="fO0-tB-VAb" firstAttribute="leading" secondItem="Bzh-7Z-yRZ" secondAttribute="leading" constant="50" id="1oa-FR-MJZ"/>
                             <constraint firstItem="Gw6-sa-GPl" firstAttribute="leading" secondItem="Bzh-7Z-yRZ" secondAttribute="leading" constant="30" id="2fY-ZI-00D"/>
-                            <constraint firstItem="Gw6-sa-GPl" firstAttribute="top" secondItem="fO0-tB-VAb" secondAttribute="bottom" constant="10" id="Afv-qZ-7CR"/>
-                            <constraint firstItem="fO0-tB-VAb" firstAttribute="top" secondItem="Bzh-7Z-yRZ" secondAttribute="top" constant="50" id="FCt-4N-3Zs"/>
-                            <constraint firstItem="Bzh-7Z-yRZ" firstAttribute="trailing" secondItem="fO0-tB-VAb" secondAttribute="trailing" constant="30" id="cz4-MO-oMY"/>
+                            <constraint firstItem="Gw6-sa-GPl" firstAttribute="top" secondItem="fO0-tB-VAb" secondAttribute="bottom" constant="5" id="Afv-qZ-7CR"/>
+                            <constraint firstItem="fO0-tB-VAb" firstAttribute="top" secondItem="Bzh-7Z-yRZ" secondAttribute="top" constant="5" id="FCt-4N-3Zs"/>
+                            <constraint firstItem="Bzh-7Z-yRZ" firstAttribute="trailing" secondItem="fO0-tB-VAb" secondAttribute="trailing" constant="50" id="cz4-MO-oMY"/>
+                            <constraint firstItem="XVF-eZ-V4E" firstAttribute="top" secondItem="Gw6-sa-GPl" secondAttribute="bottom" constant="5" id="knb-sI-30m"/>
+                            <constraint firstItem="Bzh-7Z-yRZ" firstAttribute="bottom" secondItem="XVF-eZ-V4E" secondAttribute="bottom" constant="10" id="l8w-qI-LOd"/>
+                            <constraint firstItem="XVF-eZ-V4E" firstAttribute="leading" secondItem="Bzh-7Z-yRZ" secondAttribute="leading" constant="10" id="qHC-dX-o2q"/>
+                            <constraint firstItem="Bzh-7Z-yRZ" firstAttribute="trailing" secondItem="XVF-eZ-V4E" secondAttribute="trailing" constant="10" id="tKz-sY-IeX"/>
                             <constraint firstItem="Bzh-7Z-yRZ" firstAttribute="trailing" secondItem="Gw6-sa-GPl" secondAttribute="trailing" constant="30" id="xu5-rD-iaN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Bzh-7Z-yRZ"/>
@@ -128,6 +140,7 @@
                     <connections>
                         <outlet property="ImageView" destination="fO0-tB-VAb" id="15Y-Ix-Kw3"/>
                         <outlet property="ResultTxt" destination="Gw6-sa-GPl" id="FR4-Bc-tLy"/>
+                        <outlet property="webview" destination="XVF-eZ-V4E" id="voL-X0-l7H"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ttD-7y-4Kp" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,7 +152,7 @@
             <objects>
                 <viewController storyboardIdentifier="GuideViewController" title="Hướng dẫn sử dụng" useStoryboardIdentifierAsRestorationIdentifier="YES" id="11Z-k4-oOV" customClass="GuideViewController" customModule="BirdID" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="AdY-DX-COO">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="fKl-ch-MIB"/>
@@ -155,7 +168,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xTG-NH-dBV" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Bcp-4w-iSz">
-                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <rect key="frame" x="0.0" y="20" width="320" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -172,8 +185,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="flash-off" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="gallery" width="42.666667938232422" height="42.666667938232422"/>
-        <image name="info" width="42.666667938232422" height="42.666667938232422"/>
+        <image name="flash-off" width="20" height="20"/>
+        <image name="gallery" width="24" height="24"/>
+        <image name="info" width="24" height="24"/>
     </resources>
 </document>

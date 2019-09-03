@@ -43,7 +43,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func TurnFlashOnOff(_ sender: ToggleButton) {
-        cameraCapture.turnFlash(on: sender.isOn)
+        FlashBtn.isOn = cameraCapture.turnFlash(on: sender.isOn)
     }
     
     
@@ -77,17 +77,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             return
         }
         if(result.confidence > THRESHOLD && result.className != "Other"){
-            gotoDetailScreen(image: image, name: "Kết quả: " + result.className + " - " + String(format: "%.2f", result.confidence * 100.0) + "%")
+            gotoDetailScreen(image: image, name: "Kết quả: " + result.className + " - " + String(format: "%.2f", result.confidence * 100.0) + "%", found: true)
         }else{
-            gotoDetailScreen(image: image, name: "Không tìm thấy gỗ")
+            gotoDetailScreen(image: image, name: "Không tìm thấy gỗ", found: false)
         }
     }
     
-    func gotoDetailScreen(image: UIImage, name: String) {
+    func gotoDetailScreen(image: UIImage, name: String, found: Bool) {
         let detailScreen = self.storyboard?.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         
         detailScreen.resultImage = image
         detailScreen.resultLabel = name
+        if (found) {detailScreen.result = .Found } else { detailScreen.result = .notFound }
         
         self.navigationController?.pushViewController(detailScreen, animated: true)
     }
@@ -138,7 +139,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     return
                 }
                 DispatchQueue.main.sync {
-                    self.gotoDetailScreen(image: UIImage(cgImage: videoImage), name: result.className + " - " + String(format: "%.2f", result.confidence * 100.0) + "%")
+                    self.gotoDetailScreen(image: UIImage(cgImage: videoImage), name: result.className + " - " + String(format: "%.2f", result.confidence * 100.0) + "%", found: true)
                 }
             }
         }
