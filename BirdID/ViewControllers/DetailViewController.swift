@@ -30,14 +30,18 @@ class DetailViewController : UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        ResultTxt.text = resultLabel
         ImageView.image = resultImage
         
         switch result {
             case .Found:
                 webview.isHidden = false
-                webview.load(URLRequest(url: URL(string: "https://www.birdid.no/bird/eBook.php?specieID=1989")!))
+                ResultTxt.isHidden = true
+                if (listBirdsInfo.count > 0) {
+                    webview.loadHTMLString(listBirdsInfo[0].html_content, baseURL: nil)
+                }
             case .notFound:
+                ResultTxt.isHidden = false
+                ResultTxt.text = resultLabel
                 webview.isHidden = true
         }
         

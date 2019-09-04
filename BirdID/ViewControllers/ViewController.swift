@@ -61,6 +61,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         cameraCapture.checkCameraConfigurationAndStartSession()
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        
+        if (IsNotFirstTimeUse){
+            getDataFromDatabase()
+        }else{
+            getDataFromApi()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

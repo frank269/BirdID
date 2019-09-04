@@ -18,3 +18,18 @@ func getWoodApi() -> String {
 func getBirdApi() -> String {
     return BaseUrl + "/bird/" + "index_get?key=" + KeyApi
 }
+
+var listBirdsInfo : [BirdInfor] = []
+
+var IsNotFirstTimeUse: Bool{
+    get{
+        let preferences = UserDefaults.standard
+        return preferences.bool(forKey: "IsFirstTimeUse") 
+    }
+    
+    set{
+        let preferences = UserDefaults.standard
+        preferences.set(newValue, forKey: "IsFirstTimeUse")
+        preferences.synchronize()
+    }
+}
